@@ -6,6 +6,7 @@
 &nbsp;
 
 ## 1. Promise 다뤄보기
+
 1. `getData` 라는 주어진 url을 인자로 받는 함수를 만들어주세요.
 2. `getData` 는 3초 후 url이 기준 url과 동일할 경우 성공적으로 데이터를 반환하고, 틀릴 경우 에러를 발생시킵니다.
 3. `then`과 `catch`를 이용하여 데이터를 처리하는 방법과 에러를 처리하는 방법 두 가지를 각각 보여주세요.
@@ -21,7 +22,7 @@
     // ...
 
     // getData(API_URL), getData(WRONG_URL) 각각 성공과 실패에 대한 처리를 코드작성해주세요.
-    
+
 ```
 
 &nbsp;
@@ -36,7 +37,73 @@
 
 &nbsp;
 
-## 3. DOM 제어와 함께 비동기 처리하기
+## 3. PromiseAll 다뤄보기 (빈칸 채우기)
+
+세 개의 setTimeout 비동기 함수를 각각 직렬, 병렬로 호출하는 코드입니다.
+아래의 코드를 보고 < 빈칸 > 부분을 각각 채워주시고, 그렇게 생각하는 이유도 내용으로 적어주세요.
+
+```javascript
+function task1() {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve("Task 1 Complete");
+    }, 1000);
+  });
+}
+
+function task2() {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve("Task 2 Complete");
+    }, 2000);
+  });
+}
+
+function task3() {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve("Task 3 Complete");
+    }, 3000);
+  });
+}
+
+async function runTasksSequential() {
+  console.time("Sequential");
+  try {
+    const result1 = await task1();
+    console.log(result1);
+    const result2 = await task2();
+    console.log(result2);
+    const result3 = await task3();
+    console.log(result3);
+  } catch (error) {
+    console.error("Error:", error);
+  }
+  console.timeEnd("Sequential");
+
+  // 예상되는 대략적인 시간과 그 이유 < 빈칸 1 >
+}
+
+async function runTasksParallel() {
+  console.time("Parallel");
+  try {
+    // 병렬로 promise들을 한 번에 처리하는 코드
+    const results = < 빈칸 2 >
+    results.forEach((result) => console.log(result));
+  } catch (error) {
+    console.error("Error:", error);
+  }
+  console.timeEnd("Parallel");
+  // 예상되는 대략적인 시간과 그 이유 < 빈칸 3 >
+}
+
+// 함수 호출
+runTasksSequential().then(() => runTasksParallel());
+```
+
+&nbsp;
+
+## 4. DOM 제어와 함께 비동기 처리하기
 
 html 파일을 하나 만들고 openAPI 를 활용해 고양이 사진을 불러오는 api를 요청하려 합니다.
 받아온 고양이 사진 url을 img 태그를 생성하고, `imageContainer` 라는 이름의 div에 동적으로 생성해주세요.
@@ -51,7 +118,6 @@ html 파일을 하나 만들고 openAPI 를 활용해 고양이 사진을 불러
     <title>랜덤 고양이 사진</title>
   </head>
   <body>
-
     <div id="imageContainer"></div>
 
     <script>
@@ -70,6 +136,4 @@ html 파일을 하나 만들고 openAPI 를 활용해 고양이 사진을 불러
     </script>
   </body>
 </html>
-
 ```
- 
